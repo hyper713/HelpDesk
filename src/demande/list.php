@@ -18,7 +18,7 @@
             <th>Options</th>
         </tr>
         <?php
-            $request = $conn->prepare("SELECT nom, prenom, id_dmd, categorie, priorite, date_dmd FROM utilisateur, demande WHERE utilisateur.matricule = demande.matricule");
+            $request = $conn->prepare("SELECT nom, prenom, id_dmd, categorie, priorite, date_dmd FROM utilisateur, demande WHERE utilisateur.matricule = demande.matricule AND etat='en attente'");
             $request->execute();
             $rows = $request->fetchAll(PDO::FETCH_ASSOC);
 
