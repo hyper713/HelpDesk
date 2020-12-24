@@ -11,16 +11,19 @@
     <br><br>
     <form action="update.php" method="post">
         <?php
-            $request = $conn->prepare("SELECT matricule, nom, prenom, login, mdp FROM utilisateur WHERE matricule = :mat");
-            $request->execute(array('mat' => $_GET['mat']));
-            $row = $request->fetch(PDO::FETCH_ASSOC);
-            echo('Nom: <input type="text" name="nom" value="'.$row['nom'].'"><br>');
-            echo('Prenom: <input type="text" name="prenom" value="'.$row['prenom'].'"><br>');
-            echo('Login: <input type="text" name="login" value="'.$row['login'].'"><br>');
-            echo('Mot de passe: <input type="password" name="mdp" value="'.$row['mdp'].'"><br>');
-            echo('<input type="hidden" name="mat" value="'.$_GET['mat'].'">');
+            if (isset($_GET['mat'])) {
+                $request = $conn->prepare("SELECT matricule, nom, prenom, login, mdp FROM utilisateur WHERE matricule = :mat");
+                $request->execute(array('mat' => $_GET['mat']));
+                $utilisateur = $request->fetch(PDO::FETCH_ASSOC);
+                echo('Nom: <input type="text" name="nom" value="'.$utilisateur['nom'].'"><br>');
+                echo('Prenom: <input type="text" name="prenom" value="'.$utilisateur['prenom'].'"><br>');
+                echo('Login: <input type="text" name="login" value="'.$utilisateur['login'].'"><br>');
+                echo('Mot de passe: <input type="password" name="mdp" value="'.$utilisateur['mdp'].'"><br>');
+                echo('<input type="hidden" name="mat" value="'.$_GET['mat'].'">');
+
+                echo('<input type="submit" value="Valider">');
+            }
         ?>
-        <input type="submit" value="Valider">
     </form>
     <?php
         if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['login']) and isset($_POST['mdp'])) {

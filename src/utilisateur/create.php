@@ -1,4 +1,5 @@
 <?php require_once("../database.php"); ?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,7 +31,7 @@
             $request->execute($data);
 
             if($request->rowCount()!=0){
-                echo("L'utilisateur ".$_POST["nom"]." ".$_POST["prenom"]." est créé");
+                echo("L'utilisateur est créé");
             }
         }
     ?>

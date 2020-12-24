@@ -7,7 +7,7 @@
     <title>Liste des utilisateurs</title>
 </head>
 <body>
-    <a href="create.php">Créer un utilisateur</a>
+    <a href="../index.php">Page d'Accueil</a> <a href="create.php">Créer un utilisateur</a>
     <br><br>
     <table border="1">
         <tr>
